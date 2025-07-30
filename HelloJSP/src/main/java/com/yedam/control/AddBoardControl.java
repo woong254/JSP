@@ -30,7 +30,7 @@ public class AddBoardControl implements Control {
 		BoardService svc = new BoardServiceImpl();
 		if(svc.registerBoard(param)) {
 			// 목록이동.
-			resp.sendRedirect("boarderList.do");
+			resp.sendRedirect("boardList.do");
 		} else {
 			System.out.println("에러발생.");
 		}

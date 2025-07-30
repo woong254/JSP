@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.control.AddBoardControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.ModifyFormComtrol;
 import com.yedam.control.RegisterControl;
 
 // init - service - detroy
@@ -29,10 +30,12 @@ public class FrontController extends HttpServlet {
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		map.put("/boarderList.do", new BoardListControl());
-		map.put("/board.do", new BoardControl());
+		map.put("/boardList.do", new BoardListControl()); // 글목록.
+		map.put("/board.do", new BoardControl()); // 상세화면.
 		map.put("/register.do", new RegisterControl()); // 등록회면.
 		map.put("/addBoard.do", new AddBoardControl()); // 등록처리.
+		map.put("/modifyForm.do", new ModifyFormComtrol()); // 수정화면.
+		map.put("/modifyBoard.do", null); // 
 	}
 	
 	@Override
