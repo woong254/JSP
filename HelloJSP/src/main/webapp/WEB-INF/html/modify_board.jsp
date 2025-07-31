@@ -31,8 +31,7 @@
 				value="${board_info.creationDate}" /></td>
 	</tr>
 	<tr>
-		<td colspan="4" align="center"><input type="submit" value="저장"
-			class="btn btn-success">
+		<td colspan="4" align="center"><input type="submit" value="저장" class="btn btn-success">
 			<button type="button" class="btn btn-danger">취소</button>
 		</td>
 	</tr>

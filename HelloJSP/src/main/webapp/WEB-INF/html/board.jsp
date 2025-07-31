@@ -6,6 +6,11 @@
 <jsp:include page="includes/header.jsp" />
 
 <h3>글상세화면</h3>
+
+<c:if test="${!empty msg }">
+	<div style="color: red;">${msg }</div>
+</c:if>
+
 <form action="modifyForm.do">
 <input type="hidden" value="${board_info.boardNo }" name="bno">
 <table class="table">
@@ -31,9 +36,9 @@
 				value="${board_info.creationDate}" /></td>
 	</tr>
 	<tr>
-		<td colspan="4" align="center"><input type="submit" value="수정"
-			class="btn btn-success">
-			<button type="button" class="btn btn-danger">삭제</button></td>
+		<td colspan="4" align="center">
+		<input type="submit" value="수정" class="btn btn-success">
+		<button type="button" class="btn btn-danger" ${logId eq board_info.writer ? '' : 'disabled'}>삭제</button></td>
 	</tr>
 
 </table>

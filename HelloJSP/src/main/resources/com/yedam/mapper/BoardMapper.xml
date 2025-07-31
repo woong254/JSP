@@ -50,8 +50,8 @@
 	<insert id="insertBoard" parameterType="board">
 		insert into tbl_board
 		(board_no, title, content, writer)
-		values(board_seq.nextval, #{title},
-		#{content}, #{writer})
+		values(board_seq.nextval, 
+		#{title}, #{content}, #{writer})
 	</insert>
 
 	<!-- delete -->
@@ -80,5 +80,12 @@
 		</where>
 
 	</select>
+	
+	<update id="updateBoard" parameterType="board">
+	update tbl_board
+	set    title = #{title},
+		   content = #{content}
+	where  board_no = #{boardNo}
+	</update>
 
 </mapper>

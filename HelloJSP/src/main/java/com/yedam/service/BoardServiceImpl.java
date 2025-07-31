@@ -12,7 +12,7 @@ import com.yedam.vo.BoardVO;
 // BoardService 인터페이스 구현 클래스.
 // 인터패이스에 정의된 추상메소드를 반드시 구현.
 public class BoardServiceImpl implements BoardService {
-	
+
 	SqlSession sqlSession = DBUtil.getInstance().openSession();
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 
@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService {
 		if (r > 0) {
 			sqlSession.commit();
 		}
-		
+
 		return board;
 	}
 
@@ -51,9 +51,21 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int totalCount(SearchDTO search) {
 		return mapper.selectCount(search);
+	}
+	
+
+	@Override
+	public boolean modifyBoard(BoardVO board) {
+		int r = mapper.updateBoard(board);
+		if(r>0) {
+			sqlSession.commit();
+			return true;
+		}
+		return false;
+		
 	}
 }

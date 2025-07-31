@@ -13,21 +13,27 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.control.AddBoardControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.LoginControl;
+import com.yedam.control.LoginFormControl;
+import com.yedam.control.LogoutControl;
+import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.ModifyFormComtrol;
 import com.yedam.control.RegisterControl;
+import com.yedam.control.SignFormControl;
+import com.yedam.control.SingUpControl;
 
 // init - service - detroy
 // *.do -> 실행할 컨트롤.
 // 요청url === 실행할 컨드롤.
 public class FrontController extends HttpServlet {
-	
+
 	Map<String, Control> map;
-	
+
 	//생성자.
 	public FrontController() {
-		map = new HashMap<String, Control>();
+		map = new HashMap<>();
 	}
-	
+
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/boardList.do", new BoardListControl()); // 글목록.
@@ -35,9 +41,15 @@ public class FrontController extends HttpServlet {
 		map.put("/register.do", new RegisterControl()); // 등록회면.
 		map.put("/addBoard.do", new AddBoardControl()); // 등록처리.
 		map.put("/modifyForm.do", new ModifyFormComtrol()); // 수정화면.
-		map.put("/modifyBoard.do", null); // 
+		map.put("/modifyBoard.do", new ModifyBoardControl()); // 수정처리.
+		//회원관리
+		map.put("/signForm.do", new SignFormControl());
+		map.put("/signup.do", new SingUpControl());
+		map.put("/loginForm.do", new LoginFormControl()); // 로그인화면.
+		map.put("/login.do" , new LoginControl());
+		map.put("/logout.do", new LogoutControl()); // 로그아웃.
 	}
-	
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// url vs. uri
@@ -46,9 +58,9 @@ public class FrontController extends HttpServlet {
 		String uri = req.getRequestURI();
 		String context = req.getContextPath(); // /HelloJSP
 		String page = uri.substring(context.length()); // /boardList.do
-		
+
 		Control control = map.get(page);
 		control.execute(req, resp);
-		
+
 	}
 }
