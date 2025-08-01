@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<jsp:include page="includes/header.jsp" />
 
 <h3>글상세화면</h3>
 
@@ -13,6 +12,7 @@
 
 <form action="modifyForm.do">
 <input type="hidden" value="${board_info.boardNo }" name="bno">
+<input type="hidden" value="${page }" name="page">
 <table class="table">
 	<tr>
 		<th>글번호</th>
@@ -23,6 +23,14 @@
 	<tr>
 		<th>제목</th>
 		<td colspan='3'><c:out value="${board_info.title }" /></td>
+		<c:choose>
+			<c:when test="${!empty board_info.image }">
+			<td rowspan='2'><img width= "130px" src='upload/${board_info.image }'></td>
+			 </c:when>
+			<c:otherwise>
+			<td rowspan='2'><img src='https://dummyimage.com/130X100/ffffff/0011ff.jpg&text=no+image'></td>
+			</c:otherwise>
+		</c:choose>
 	</tr>
 	<tr>
 		<th>내용</th>
@@ -43,4 +51,3 @@
 
 </table>
 </form>
-<jsp:include page="includes/footer.jsp" />
