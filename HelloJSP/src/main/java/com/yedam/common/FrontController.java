@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.control.AddBoardControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.JSControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
 import com.yedam.control.LogoutControl;
@@ -48,6 +49,9 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginFormControl()); // 로그인화면.
 		map.put("/login.do" , new LoginControl());
 		map.put("/logout.do", new LogoutControl()); // 로그아웃.
+		
+		// 기타.
+		map.put("/JS.do", new JSControl());
 	}
 
 	@Override
