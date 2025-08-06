@@ -11,10 +11,5 @@ public class Main {
    public static void Main(String[] args) {
 	   SqlSession sqlSession = DBUtil.getInstance().openSession();
 	   ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
-	   
-	   List<ReplyVO> list = mapper.replyList(233);
-	   for (ReplyVO reply : list) {
-		   System.out.println(reply);
-	   }
-}
+  }
 }

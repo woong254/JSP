@@ -9,11 +9,30 @@ import com.yedam.mapper.ReplyMapper;
 import com.yedam.vo.ReplyVO;
 
 public class ReplyServiceImpl implements ReplyService {
-	   SqlSession sqlSession = DBUtil.getInstance().openSession();
-	   ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
+	SqlSession sqlSession = DBUtil.getInstance().openSession();
+	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
 	   
-	   @Override
-	   public List<ReplyVO> replyList(int boardNo){
-		   return mapper.replyList(boardNo);
+	@Override
+	public List<ReplyVO> replyList(int boardNo, int page){
+		return mapper.replyList(boardNo, page);
 	   }
+
+	@Override
+	public boolean removeReply(int replyNo) {
+		int r = mapper.deleteList(replyNo);
+		if (r > 0) {
+			sqlSession.commit();
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean addReply(ReplyVO reply) {
+		int r = mapper.insertReply(reply);
+		if (r > 0) {
+			sqlSession.commit();
+			return true;
+		}
+		return false;
+	}
 }

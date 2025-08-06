@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AddReplyControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.JSControl;
@@ -20,6 +21,7 @@ import com.yedam.control.LogoutControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.ModifyFormComtrol;
 import com.yedam.control.RegisterControl;
+import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyListControl;
 import com.yedam.control.SignFormControl;
 import com.yedam.control.SingUpControl;
@@ -56,6 +58,8 @@ public class FrontController extends HttpServlet {
 		
 		// 댓글관련.
 		map.put("/replyList.do", new ReplyListControl()); // 글번호 -> 댓글목록.
+		map.put("/removeReply.do", new RemoveReplyControl()); // 댓글삭제
+		map.put("/addReply.do", new AddReplyControl()); // 댓글등록
 	}
 
 	@Override
@@ -66,7 +70,7 @@ public class FrontController extends HttpServlet {
 		String uri = req.getRequestURI();
 		String context = req.getContextPath(); // /HelloJSP
 		String page = uri.substring(context.length()); // /boardList.do
-
+		
 		Control control = map.get(page);
 		control.execute(req, resp);
 
