@@ -28,4 +28,13 @@
 	values(#{replyNo}, #{boardNo}, #{reply}, #{replyer})
  </insert>
  
+ <select id="selectCount" parameterType="int">
+ 	select count(1)
+	from tbl_reply
+	where board_no = #{boardNo}
+	group by board_no
+ </select>
+ 
+ 
+ 
 </mapper>

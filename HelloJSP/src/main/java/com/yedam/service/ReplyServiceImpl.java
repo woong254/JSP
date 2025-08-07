@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DBUtil;
+import com.yedam.common.SearchDTO;
 import com.yedam.mapper.ReplyMapper;
 import com.yedam.vo.ReplyVO;
 
@@ -35,4 +36,10 @@ public class ReplyServiceImpl implements ReplyService {
 		}
 		return false;
 	}
+	@Override
+	public int replyCount(int boardNo) {
+		return mapper.selectCount(boardNo);
+	
 }
+}
+
