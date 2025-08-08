@@ -6,4 +6,5 @@ import com.yedam.vo.EventVO;
 
 public interface EventService {
 	List<EventVO> eventList();
+	boolean addEvent(EventVO event);
 }

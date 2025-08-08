@@ -8,5 +8,14 @@
  	select *
  	from tbl_event
  </select>
-
+ 
+ <insert id="insertEvent" parameterType="map">
+ 	insert tbl_event (title, start_datd, end_date)
+ 	values (${title}, #{start}, #{end})
+ </insert>
+ 
+ <delete id="deleteEvent">
+ 	delete from tbl_event
+ 	where title = #{title}
+ </delete>
 </mapper>

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.yedam.common.DBUtil;
 import com.yedam.mapper.EventMapper;
 import com.yedam.vo.EventVO;
+import com.yedam.vo.ReplyVO;
 
 public class EventServiceImpl implements EventService {
 	SqlSession sqlSession = DBUtil.getInstance().openSession();
@@ -16,5 +17,15 @@ public class EventServiceImpl implements EventService {
 	public List<EventVO> eventList(){
 		return mapper.eventList();
 	   }
-
+	
+	@Override
+	public boolean addEvent(EventVO event) {
+		int r = mapper.insertEvent(event);
+		if (r > 0) {
+			sqlSession.commit();
+			return true;
+		}
+		return false;
+	}
+	
 }

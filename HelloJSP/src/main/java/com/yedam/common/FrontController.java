@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AddEventControl;
 import com.yedam.control.AddReplyControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.ChartControl;
-import com.yedam.control.EventControl;
+import com.yedam.control.EventListControl;
 import com.yedam.control.JSControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
@@ -62,12 +63,13 @@ public class FrontController extends HttpServlet {
 		
 		// 댓글관련.
 		map.put("/replyList.do", new ReplyListControl()); // 글번호 -> 댓글목록.
-		map.put("/removeReply.do", new RemoveReplyControl()); // 댓글삭제
-		map.put("/addReply.do", new AddReplyControl()); // 댓글등록
+		map.put("/removeReply.do", new RemoveReplyControl()); // 댓글삭제.
+		map.put("/addReply.do", new AddReplyControl()); // 댓글등록.
 		map.put("/totalReply.do", new TotalCntControl()); //
 		
 		// event
-		map.put("/eventList.do", new EventControl()); // 이벤트목록
+		map.put("/eventList.do", new EventListControl()); // 이벤트목록.
+		map.put("/addEvent.do", new AddEventControl()); // 이벤트등록. {retCode:"OK"/"NG"}
 	}
 
 	@Override
