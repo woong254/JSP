@@ -24,6 +24,7 @@ import com.yedam.control.LogoutControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.ModifyFormComtrol;
 import com.yedam.control.RegisterControl;
+import com.yedam.control.RemoveEventControl;
 import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyListControl;
 import com.yedam.control.SignFormControl;
@@ -70,6 +71,7 @@ public class FrontController extends HttpServlet {
 		// event
 		map.put("/eventList.do", new EventListControl()); // 이벤트목록.
 		map.put("/addEvent.do", new AddEventControl()); // 이벤트등록. {retCode:"OK"/"NG"}
+		map.put("/removeEvent.do", new RemoveEventControl());
 	}
 
 	@Override

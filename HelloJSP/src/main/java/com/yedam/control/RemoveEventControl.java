@@ -1,8 +1,6 @@
 package com.yedam.control;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,41 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Control;
 import com.yedam.service.EventService;
 import com.yedam.service.EventServiceImpl;
-import com.yedam.vo.EventVO;
 
-public class AddEventControl implements Control {
+public class RemoveEventControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/json;charset=utf-8");
-		
+		// TODO Auto-generated method stub
 		String title = req.getParameter("title");
-		String sDate = req.getParameter("start");
-		String eDate = req.getParameter("end");
-		
-		EventVO param = new EventVO();
-		
-		param.setTitle(title);
-		param.setStartDate(sDate);
-		param.setEndDate(eDate);
-		
-		Map<String, String> map = new HashMap<>();
-		map.put("title", title);
-		map.put("startDate", sDate);
-		map.put("endDate", eDate);
-		
 		EventService svc = new EventServiceImpl();
-		try {
-			svc.addEvent(map);
+		if(svc.removeEvent(title)) {
 			resp.getWriter().print("{\"retCode\":\"OK\"}");
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
 			resp.getWriter().print("{\"retCode\":\"NG\"}");
-		
 		}
+		
 
 	}
-	
+
 }
-	
-	

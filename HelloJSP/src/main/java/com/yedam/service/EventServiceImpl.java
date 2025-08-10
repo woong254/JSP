@@ -1,13 +1,13 @@
 package com.yedam.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DBUtil;
 import com.yedam.mapper.EventMapper;
 import com.yedam.vo.EventVO;
-import com.yedam.vo.ReplyVO;
 
 public class EventServiceImpl implements EventService {
 	SqlSession sqlSession = DBUtil.getInstance().openSession();
@@ -19,8 +19,18 @@ public class EventServiceImpl implements EventService {
 	   }
 	
 	@Override
-	public boolean addEvent(EventVO event) {
-		int r = mapper.insertEvent(event);
+	public boolean addEvent(Map<String, String> map) {
+		int r = mapper.insertEvent(map);
+		if (r > 0) {
+			sqlSession.commit();
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean removeEvent(String title) {
+		int r = mapper.deleteEvent(title);
 		if (r > 0) {
 			sqlSession.commit();
 			return true;
